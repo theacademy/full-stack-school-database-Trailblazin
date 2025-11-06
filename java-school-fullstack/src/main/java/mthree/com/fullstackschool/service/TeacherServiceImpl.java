@@ -40,8 +40,8 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
         } catch (DataAccessException dae) {
             teacherById = new Teacher();
             teacherById.setTeacherId(id);
-            teacherById.setTeacherFName("Student Not Found");
-            teacherById.setTeacherLName("Student Not Found");
+            teacherById.setTeacherFName("Teacher Not Found");
+            teacherById.setTeacherLName("Teacher Not Found");
         }
         return teacherById;
 
@@ -52,10 +52,10 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
         //YOUR CODE STARTS HERE
 
         if(teacher.getTeacherFName().equals("")){
-            teacher.setTeacherFName("Name blank, course NOT added");
+            teacher.setTeacherFName("First Name blank, teacher NOT added");
         }
         if(teacher.getTeacherFName().equals("")){
-            teacher.setTeacherLName("Description blank, course NOT added");
+            teacher.setTeacherLName("Last Name blank, teacher NOT added");
         }
         else {
             return teacherDao.createNewTeacher(teacher);
@@ -85,7 +85,6 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
         //YOUR CODE STARTS HERE
 
         teacherDao.deleteTeacher(id);
-        System.out.println("Teacher ID:" + id + " deleted");
 
         //YOUR CODE ENDS HERE
     }
