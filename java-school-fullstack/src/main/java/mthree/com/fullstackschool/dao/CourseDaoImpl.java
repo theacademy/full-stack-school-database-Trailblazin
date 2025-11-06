@@ -99,17 +99,14 @@ public class CourseDaoImpl implements CourseDao {
     @Transactional
     public void deleteAllStudentsFromCourse(int courseId) {
         //YOUR CODE STARTS HERE
-        final String DELETE_MEETING_EMPLOYEE_BY_ROOM = "DELETE cs.* FROM course_student cs "
-                + "JOIN course c ON cs.course_id = c.id WHERE c.cid = ?";
-        jdbcTemplate.update(DELETE_MEETING_EMPLOYEE_BY_ROOM, courseId);
 
-        final String DELETE_MEETING_BY_ROOM = "DELETE FROM course WHERE cid = ?";
-        jdbcTemplate.update(DELETE_MEETING_BY_ROOM, courseId);
+        if (courseId <= 0) {
+            throw new IllegalArgumentException("Invalid course ID");
+        }
 
-        /*
-        final String DELETE_ROOM = "DELETE FROM room WHERE id = ?";
-        jdbcTemplate.update(DELETE_ROOM, courseId);
-    */
+        // Delete all associations between this course and any students
+        final String DELETE_COURSE_STUDENT = "DELETE FROM course_student WHERE course_id = ?";
+        jdbcTemplate.update(DELETE_COURSE_STUDENT, courseId);
 
         //YOUR CODE ENDS HERE
     }

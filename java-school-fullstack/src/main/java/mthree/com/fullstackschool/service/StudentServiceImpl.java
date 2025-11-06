@@ -51,10 +51,10 @@ public class StudentServiceImpl implements StudentServiceInterface {
         //YOUR CODE STARTS HERE
 
         if(student.getStudentFirstName().equals("")){
-            student.setStudentFirstName("Name blank, course NOT added");
+            student.setStudentFirstName("First Name blank, student NOT added");
         }
         if(student.getStudentLastName().equals("")){
-            student.setStudentLastName("Description blank, course NOT added");
+            student.setStudentLastName("Last Name blank, student NOT added");
         }
         else {
             return studentDao.createNewStudent(student);
@@ -71,8 +71,8 @@ public class StudentServiceImpl implements StudentServiceInterface {
             studentDao.updateStudent(student);
         }
         else{
-            student.setStudentFirstName("IDs do not match, course not updated");
-            student.setStudentLastName("IDs do not match, course not updated");
+            student.setStudentFirstName("IDs do not match, student not updated");
+            student.setStudentLastName("IDs do not match, student not updated");
         }
         return student;
         //YOUR CODE ENDS HERE
